@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+  background-color: #f8f9fa;
+
+}
+
+::-webkit-scrollbar{
+  width: 8px;
+  background-color: transparent;
+}
+
+
+::-webkit-scrollbar-thumb{
+  background-color: rgba(233, 195, 22, 0.781);
+  border-radius: 10px;
+}
