@@ -20,9 +20,9 @@ const navLinks = [
             <div className="flex items-center gap-6 lg:text-[17px]">
               {navLinks.map(({ link, href }, index) => {
                 return (
-                  <a
+                  <Link
                     key={index}
-                    href={href}
+                    to={href}
                     className={` transition ${
                       index === 2
                         ? "bg-[#bf9c6d] rounded-full px-4 py-2 text-[#212529] hover:text-black"
@@ -30,7 +30,7 @@ const navLinks = [
                     }`}
                   >
                     {link}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
