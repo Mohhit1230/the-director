@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { Navbar } from '../components/layout/Navbar'
+import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 
 export default function Orders() {
@@ -21,10 +20,9 @@ export default function Orders() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <main className="max-w-7xl mx-auto p-6">
-        <h1 className="text-3xl font-semibold mb-6">Order history</h1>
+    <div className="min-h-screen">
+   
+      <main className="max-w-7xl mt-28 mx-auto p-6">
 
         {orders.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-6 text-center">
@@ -55,7 +53,7 @@ export default function Orders() {
                     </div>
                   </div>
 
-                  <div className="mt-4 md:mt-0 md:ml-6 flex items-center gap-3">
+                  <div className="mt-4 md:mt-0 md:ml-6 flex items-center gap-4">
                     <div className="text-right">
                       <div className="text-sm text-gray-500">Total</div>
                       <div className="font-semibold text-lg">${o.total?.toFixed(2) || '0.00'}</div>

@@ -27,7 +27,11 @@ const products = [
     description:
       "A timeless black suit perfect for formal occasions and business meetings.",
     images: [
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
     ],
     specifications: {
       material: "Wool",
@@ -37,6 +41,7 @@ const products = [
     availableSizes: ["40", "42", "44", "46"],
     stockLevel: 5,
     price: 299.99,
+    isWishlisted:true,
   },
   {
     id: 2,
@@ -45,7 +50,10 @@ const products = [
     description:
       "An elegant navy blue suit ideal for professional settings and interviews.",
     images: [
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
     ],
     specifications: {
       material: "Wool",
@@ -55,6 +63,7 @@ const products = [
     availableSizes: ["40", "42", "44", "46"],
     stockLevel: 5,
     price: 349.99,
+    isWishlisted:true,
   },
   {
     id: 3,
@@ -63,7 +72,10 @@ const products = [
     description:
       "A sophisticated gray pinstripe suit for a sharp and modern look.",
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
     ],
     specifications: {
       material: "Wool",
@@ -73,6 +85,7 @@ const products = [
     availableSizes: ["40", "42", "44", "46"],
     stockLevel: 5,
     price: 399.99,
+    isWishlisted:true,
   },
   {
     id: 4,
@@ -80,7 +93,10 @@ const products = [
     name: "Charcoal Suit",
     description: "A versatile charcoal suit suitable for everyday formal wear.",
     images: [
-      "https://images.unsplash.com/photo-1506629905607-0b3b3b3b3b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
     ],
     specifications: {
       material: "Wool",
@@ -90,6 +106,7 @@ const products = [
     availableSizes: ["40", "42", "44", "46"],
     stockLevel: 5,
     price: 399.99,
+    isWishlisted:true,
   },
   {
     id: 5,
@@ -98,7 +115,10 @@ const products = [
     description:
       "A light beige suit perfect for summer events and casual formal occasions.",
     images: [
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
     ],
     specifications: {
       material: "Wool",
@@ -108,6 +128,7 @@ const products = [
     availableSizes: ["40", "42", "44", "46"],
     stockLevel: 5,
     price: 349.99,
+    isWishlisted:true,
   },
   {
     id: 6,
@@ -116,7 +137,10 @@ const products = [
     description:
       "A bold burgundy suit for making a statement at special occasions.",
     images: [
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
     ],
     specifications: {
       material: "Wool",
@@ -134,7 +158,10 @@ const products = [
     description:
       "A unique olive green suit for a modern and distinctive appearance.",
     images: [
-      "https://images.unsplash.com/photo-1506629905607-0b3b3b3b3b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
     ],
     specifications: {
       material: "Wool",
@@ -152,7 +179,10 @@ const products = [
     description:
       "A warm tan suit ideal for casual formal wear and outdoor events.",
     images: [
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
     ],
     specifications: {
       material: "Wool",
@@ -170,7 +200,10 @@ const products = [
     description:
       "A vibrant red t-shirt featuring a cool graphic design for casual outings.",
     images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
     ],
     specifications: {
       material: "Cotton",
@@ -188,7 +221,10 @@ const products = [
     description:
       "A soft blue V-neck t-shirt, a wardrobe essential for everyday comfort.",
     images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
     ],
     specifications: {
       material: "Cotton",
@@ -206,7 +242,10 @@ const products = [
     description:
       "A comfortable black sleeveless t-shirt for workouts and hot days.",
     images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
     ],
     specifications: {
       material: "Cotton",
@@ -224,7 +263,10 @@ const products = [
     description:
       "A classic white t-shirt with a small chest pocket for a subtle detail.",
     images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
     ],
     specifications: {
       material: "Cotton",
@@ -242,7 +284,10 @@ const products = [
     description:
       "A fun green striped t-shirt perfect for casual and relaxed vibes.",
     images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
     ],
     specifications: {
       material: "Cotton",
@@ -259,7 +304,10 @@ const products = [
     name: "Yellow Polo T-Shirt",
     description: "A bright yellow polo t-shirt for sporty and energetic days.",
     images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
     ],
     specifications: {
       material: "Cotton",
@@ -276,7 +324,10 @@ const products = [
     name: "Purple Hooded T-Shirt",
     description: "A cozy purple hooded t-shirt great for layering and comfort.",
     images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
     ],
     specifications: {
       material: "Cotton",
@@ -294,7 +345,10 @@ const products = [
     description:
       "An eye-catching orange t-shirt with a unique and creative print.",
     images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
     ],
     specifications: {
       material: "Cotton",
@@ -304,6 +358,7 @@ const products = [
     availableSizes: ["S", "M", "L", "XL"],
     stockLevel: 10,
     price: 24.99,
+    isWishlist:true
   },
   {
     id: 17,
@@ -311,7 +366,10 @@ const products = [
     name: "Striped Silk Tie",
     description: "A classic striped silk tie to elevate your formal attire.",
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
     ],
     specifications: {
       material: "Silk",
@@ -328,7 +386,10 @@ const products = [
     name: "Solid Blue Tie",
     description: "A solid blue tie that complements any suit perfectly.",
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
     ],
     specifications: {
       material: "Silk",
@@ -345,7 +406,10 @@ const products = [
     name: "Paisley Tie",
     description: "A patterned paisley tie for a touch of elegance and style.",
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
     ],
     specifications: {
       material: "Silk",
@@ -362,7 +426,10 @@ const products = [
     name: "Red Bow Tie",
     description: "A red bow tie ideal for special events and celebrations.",
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
+      '/images/products/p1.jpg',
     ],
     specifications: {
       material: "Silk",
@@ -379,7 +446,10 @@ const products = [
     name: "Black Skinny Tie",
     description: "A slim black tie for a modern and sleek appearance.",
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      '/images/products/p1.jpg',
+      '/images/products/p2.jpg',
+      '/images/products/p3.png',
+      '/images/products/p4.jpg',
     ],
     specifications: {
       material: "Silk",

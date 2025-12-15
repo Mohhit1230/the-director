@@ -104,6 +104,14 @@ export function AuthProvider({ children }) {
     return o
   }
 
+  const addWishlist = async (productId) => {
+    if (!user) throw new Error('Not authenticated')
+    const wishlist = auth.addWishlist(productId)
+    // update local user copy
+    const updated = { isWishlisted: [...(user.isWishlisted), wishlist] }
+    setUser(updated)
+    return wishlist
+  }
   // simple per-user cart stored in localStorage under td_cart_<userId>
   const getCart = () => {
     if (!user) return []
@@ -148,7 +156,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, token, register, login, logout, requestPasswordReset, resetPassword, updateProfile, addAddress, getOrders, addOrder, getCart, setCart, addToCart, updateCartItem, removeFromCart, clearCart }}>
+    <AuthContext.Provider value={{ user, token, register, login, logout, requestPasswordReset, resetPassword, updateProfile, addAddress, getOrders, addOrder, getCart, setCart, addToCart, updateCartItem, removeFromCart, clearCart, addWishlist }}>
       {children}
     </AuthContext.Provider>
   )

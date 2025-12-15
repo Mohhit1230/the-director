@@ -3,7 +3,7 @@ import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { Link } from 'react-router-dom'
 export const Footer = () => {
   return (
-    <div>
+    <div className="z-50">
         <footer className="bg-[#18130e] py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 items-start">

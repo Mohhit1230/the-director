@@ -8,7 +8,7 @@ import { AuthProvider } from './context/AuthContext'
 import { ToastProvider } from './components/ui/Toast'
 
 export function Root() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   return (
     <StrictMode>

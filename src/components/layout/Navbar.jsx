@@ -1,161 +1,211 @@
-import { IoIosCart, IoIosSearch, IoMdMenu, IoMdClose } from "react-icons/io";
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
-import { useState, useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { IoIosSearch, IoMdMenu, IoMdClose } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { useState, useEffect, useRef } from "react";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { IoCartOutline } from "react-icons/io5";
+import { BiUser } from "react-icons/bi";
+import { MdOutlineShoppingBag, MdOutlineCancel, MdOutlineLogout } from "react-icons/md";
+import { AiOutlineStar } from "react-icons/ai";
 
 export const Navbar = () => {
-  const [open, setOpen] = useState(false)
-  const [visible, setVisible] = useState(true)
-  const lastScroll = useRef(0)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const searchRef = useRef(null)
-  const searchInputRef = useRef(null)
+  const { user, logout } = useAuth();
+  const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const lastScroll = useRef(0);
+
+  const auth = useAuth();
+  const navigate = useNavigate();
+
   const navLinks = [
-    { link: "Home", href: "/" },
-    { link: "The Origin Decree", href: "/about" },
-    { link: "Contact Production Office", href: "/contact" },
+    { link: "Home", href: `${user ? "/home" : "/"}` },
+    { link: "About", href: "/about" },
+    { link: "Contact", href: "/contact" },
+    { link: "Sign Up", href: "/signup" },
   ];
-  const auth = useAuth()
-  const navigate = useNavigate()
+
 
   useEffect(() => {
-    lastScroll.current = window.scrollY
-    let ticking = false
+    lastScroll.current = window.scrollY;
+    let ticking = false;
     const onScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const current = window.scrollY
+          const current = window.scrollY;
           // keep visible when mobile menu is open
           if (open) {
-            setVisible(true)
-            lastScroll.current = current
-            ticking = false
-            return
+            setVisible(true);
+            lastScroll.current = current;
+            ticking = false;
+            return;
           }
 
           if (current > lastScroll.current + 10 && current > 60) {
             // scrolled down
-            setVisible(false)
+            setVisible(false);
           } else if (current < lastScroll.current - 10) {
             // scrolled up
-            setVisible(true)
+            setVisible(true);
           }
-          lastScroll.current = current
-          ticking = false
-        })
-        ticking = true
+          lastScroll.current = current;
+          ticking = false;
+        });
+        ticking = true;
       }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [open])
-
-  // handle click outside to close search
-  useEffect(() => {
-    function onDocClick(e) {
-      if (!searchOpen) return
-      const el = searchRef.current
-      if (el && !el.contains(e.target)) {
-        // close with animation
-        gsap.to(el, { width: 0, opacity: 0, duration: 0.2, ease: 'power1.in' })
-        setSearchOpen(false)
-      }
-    }
-    document.addEventListener('click', onDocClick)
-    return () => document.removeEventListener('click', onDocClick)
-  }, [searchOpen])
-
-  // close search when user scrolls (but keep it open while interacting)
-  useEffect(() => {
-    if (!searchOpen) return
-    const onScrollClose = () => {
-      const el = searchRef.current
-      if (!el) return
-      gsap.killTweensOf(el)
-      gsap.to(el, { width: 0, opacity: 0, duration: 0.2, ease: 'power1.in' })
-      setSearchOpen(false)
-    }
-    window.addEventListener('scroll', onScrollClose, { passive: true })
-    return () => window.removeEventListener('scroll', onScrollClose)
-  }, [searchOpen])
-
-  const toggleSearch = (e) => {
-    e?.stopPropagation()
-    const el = searchRef.current
-    const isMobile = window.innerWidth < 768
-    if (!el) return setSearchOpen(s => !s)
-
-    if (!searchOpen) {
-      // open
-      // set an initial width so animation works
-      gsap.killTweensOf(el)
-      if (isMobile) {
-        gsap.set(el, { width: 0, opacity: 0, left: 0, right: 0 })
-        gsap.to(el, { width: '100%', opacity: 1, duration: 0.35, ease: 'power2.out', onComplete: () => searchInputRef.current?.focus() })
-      } else {
-        gsap.set(el, { width: 0, opacity: 0, transformOrigin: 'right center' })
-        gsap.to(el, { width: 220, opacity: 1, duration: 0.35, ease: 'power2.out', onComplete: () => searchInputRef.current?.focus() })
-      }
-      setSearchOpen(true)
-    } else {
-      // close
-      gsap.killTweensOf(el)
-      gsap.to(el, { width: 0, opacity: 0, duration: 0.2, ease: 'power1.in' })
-      setSearchOpen(false)
-    }
-  }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [open]);
 
   return (
-    <header className={`fixed left-0 right-0 top-0 z-50 bg-white backdrop-blur-md transform transition-all duration-300 ease-in-out ${visible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
-      <nav className="max-w-7xl mx-auto w-full flex items-center justify-between px-4 md:px-6 h-16">
-        <div className="flex items-center gap-3">
-          <img src="/images/logo.jpg" alt="Logo" className="w-10 h-10 rounded-full brightness-150" />
+    <header
+      className={`fixed left-0 right-0 top-0 z-50 bg-white/10 backdrop-blur-sm shadow transform transition-all duration-300 ease-in-out ${visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        }`}
+    >
+      <nav className="max-w-7xl mx-auto w-full flex items-center justify-between px-4 md:px-6 ">
+        <div className="w-full flex items-center justify-between">
+          <img
+            src="/images/brand/logo.png"
+            alt="Logo"
+            className="w-32 h-20 rounded-full brightness-150"
+          />
           <button
             className="md:hidden p-2 rounded-md focus:outline-none"
-            onClick={() => setOpen(v => !v)}
+            onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            {open ? <IoMdClose className="w-6 h-6" /> : <IoMdMenu className="w-6 h-6" />}
+            {open ? (
+              <IoMdClose className="w-6 h-6" />
+            ) : (
+              <IoMdMenu className="w-6 h-6" />
+            )}
           </button>
           <div className="hidden md:flex items-center gap-6 text-sm lg:text-base">
             {navLinks.map(({ link, href }, index) => (
               <Link
                 key={index}
                 to={href}
-                className={`transition ${
-                  index === 2
-                    ? "bg-[#bf9c6d] rounded-full px-4 py-2 text-[#212529] hover:text-black"
-                    : "hover:text-yellow-400"
-                }`}
+                className={` ${user && index == 3 ? "hidden" : "p-3"}
+                  text-[#FFAD33] hover:text-yellow-400
+                
+                `}
               >
                 {link}
               </Link>
             ))}
           </div>
-        </div>
-
-        <div className="hidden md:flex items-center gap-4">
-          <div className="relative">
-            <button onClick={toggleSearch} className="p-1 rounded-full focus:outline-none" aria-label="Open search">
-             <IoIosSearch className="w-9 h-9 p-2 rounded-full text-black bg-[#f2f2f2] hover:text-yellow-400 cursor-pointer" /></button>
-
+          <div className="hidden md:flex items-center gap-4">
             {/* animated search container anchored to the icon wrapper so it grows from the icon */}
-            <div ref={searchRef} className="absolute right-12 bottom-1 z-50 mt-2 bg-[#f2f2f2] rounded-full shadow-md overflow-hidden" style={{ width: 0, opacity: 0 }}>
-              <form onSubmit={(e) => { e.preventDefault(); const v = searchInputRef.current?.value;
-                searchInputRef.current.value = ''; console.log('search:', v); }} className="flex items-center px-2 py-1">
-                <input ref={searchInputRef} type="search" placeholder="Search..." className="w-full px-3 py-2 text-sm focus:outline-none" />
-                
+            <div className="bg-white rounded-sm overflow-hidden px-1.5 w-60">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+                className="flex items-center "
+              >
+                <input
+                  type="search"
+                  placeholder="What are you looking for?"
+                  className="w-full px-2 py-2 text-sm focus:outline-none appearance-none"
+                />
+                <IoIosSearch className="w-10 h-10 p-2 rounded-full text-black hover:text-yellow-400 cursor-pointer" />
               </form>
             </div>
-          </div>
 
-          <button onClick={() => auth?.user ? navigate('/profile') : navigate('/login')} className="px-6 py-2 bg-[#f2f2f2] rounded-full">
-            Access Boardroom
-          </button>
-          <button onClick={() => auth?.user ? navigate('/cart') : navigate('/login')} className="w-10 h-10 p-3 rounded-full text-black bg-[#f2f2f2] hover:text-yellow-400 cursor-pointer">
-            <IoIosCart />
-          </button>
+            <button
+              onClick={() =>
+                navigate("/wishlist")
+              }
+              className=" text-[#FFAD33] transition-colors hover:text-yellow-400 cursor-pointer"
+            >
+              <IoMdHeartEmpty className="w-7 h-7 font-light" />
+            </button>
+            <button
+              onClick={() =>
+                navigate("/cart")
+              }
+              className=" text-[#FFAD33] transition-colors hover:text-yellow-400 cursor-pointer"
+            >
+              <IoCartOutline className="w-7 h-7" />
+            </button>
+
+            {/* User Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setUserDropdownOpen(true)}
+              onMouseLeave={() => setUserDropdownOpen(false)}
+            >
+              <button
+                className="text-white bg-[#fd4444] p-2 rounded-full transition-colors hover:bg-[#fd4444]/80 cursor-pointer"
+              >
+                <BiUser className="w-5 h-5" />
+              </button>
+
+              {/* Dropdown Menu */}
+              {userDropdownOpen && (
+                <div className="absolute right-0 top-full pt-2 z-50">
+                  <div className="w-56 bg-gradient-to-b from-[#3d3d3d] via-[#4a4a4a] to-[#5a5a5a] backdrop-blur-md rounded-md shadow-2xl overflow-hidden">
+                    {user ? (
+                      // Authenticated User Menu
+                      <div className="py-2">
+                        <Link
+                          to="/account/profile"
+                          className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                        >
+                          <BiUser className="w-5 h-5 text-gray-300" />
+                          <span className="text-[#ffad33]">Manage My Account</span>
+                        </Link>
+                        <Link
+                          to="/account/orders"
+                          className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                        >
+                          <MdOutlineShoppingBag className="w-5 h-5 text-gray-300" />
+                          <span className="text-[#ffad33]">My Order</span>
+                        </Link>
+                        <Link
+                          to="/account/cancellations"
+                          className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                        >
+                          <MdOutlineCancel className="w-5 h-5 text-gray-300" />
+                          <span className="text-[#ffad33]">My Cancellations</span>
+                        </Link>
+                        <Link
+                          to="/account/reviews"
+                          className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                        >
+                          <AiOutlineStar className="w-5 h-5 text-gray-300" />
+                          <span className="text-[#ffad33]">My Reviews</span>
+                        </Link>
+                        <button
+                          onClick={() => {
+                            logout();
+                            navigate('/');
+                            setUserDropdownOpen(false);
+                          }}
+                          className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                        >
+                          <MdOutlineLogout className="w-5 h-5 text-gray-300" />
+                          <span className="text-[#ffad33]">Logout</span>
+                        </button>
+                      </div>
+                    ) : (
+                      // Non-authenticated User Menu
+                      <div className="py-2">
+                        <Link
+                          to="/login"
+                          className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                        >
+                          <BiUser className="w-5 h-5 text-gray-300" />
+                          <span className="text-[#ffad33]">Login</span>
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -163,20 +213,40 @@ export const Navbar = () => {
           <div className="absolute left-0 top-full w-full bg-white shadow-md md:hidden">
             <div className="flex flex-col px-4 py-3 gap-2">
               {navLinks.map(({ link, href }, i) => (
-                <Link key={i} to={href} onClick={() => setOpen(false)} className="py-2 border-b last:border-b-0">
+                <Link
+                  key={i}
+                  to={href}
+                  onClick={() => setOpen(false)}
+                  className="py-2 border-b last:border-b-0"
+                >
                   {link}
                 </Link>
               ))}
               <div className="flex items-center gap-3 pt-2">
-                <button onClick={(e) => { e.stopPropagation(); toggleSearch(); setOpen(false); }} className="p-1 rounded-full focus:outline-none">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    
+                    setOpen(false);
+                  }}
+                  className="p-1 rounded-full focus:outline-none"
+                >
                   <IoIosSearch className="w-8 h-8 p-2 rounded-full text-black bg-[#f2f2f2]" />
                 </button>
-                <button onClick={() => { setOpen(false); (auth?.user ? navigate('/profile') : navigate('/login')) }} className="px-3 py-2 bg-[#f2f2f2] rounded-full">Access Boardroom</button>
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    auth?.user ? navigate("/user/account") : navigate("/login");
+                  }}
+                  className="px-3 py-2 bg-[#f2f2f2] rounded-full"
+                >
+                  Access Boardroom
+                </button>
               </div>
             </div>
           </div>
         )}
       </nav>
     </header>
-  )
-}
+  );
+};
