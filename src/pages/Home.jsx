@@ -1,9 +1,7 @@
-
 import { FaArrowRightLong, FaArrowUpLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
 import { RiCustomerService2Line } from "react-icons/ri";
-
 
 export default function Home() {
   const categories = [
@@ -63,7 +61,6 @@ export default function Home() {
         </section>
 
         <section className="max-w-6xl py-28 mx-auto flex flex-col gap-20 ">
-
           {[
             {
               img: "/images/products/cat2.png",
@@ -78,7 +75,12 @@ export default function Home() {
               desc: "Explore our range of casual t-shirts designed for comfort and style. Made from premium fabrics, our t-shirts are perfect for everyday wear and effortless fashion.",
             },
           ].map((section, index) => (
-            <div key={index} className={`w-full ${index == 1 ? 'flex-row-reverse' : ''} flex justify-between gap-20 `}>
+            <div
+              key={index}
+              className={`w-full ${
+                index == 1 ? "flex-row-reverse" : ""
+              } flex justify-between gap-20 `}
+            >
               <img
                 src={section.img}
                 alt=""
@@ -99,7 +101,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-
         </section>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative p-4 mb-8">
           <div className="text-center">
@@ -108,8 +109,12 @@ export default function Home() {
                 <TbTruckDelivery className="text-white text-3xl" />
               </div>
             </div>
-            <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">FREE AND FAST DELIVERY</h3>
-            <p className="text-yellow-500/90 text-sm">Free delivery for all orders over $140</p>
+            <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">
+              FREE AND FAST DELIVERY
+            </h3>
+            <p className="text-yellow-500/90 text-sm">
+              Free delivery for all orders over $140
+            </p>
           </div>
 
           <div className="text-center">
@@ -118,8 +123,12 @@ export default function Home() {
                 <RiCustomerService2Line className="text-white text-3xl" />
               </div>
             </div>
-            <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">24/7 CUSTOMER SERVICE</h3>
-            <p className="text-yellow-500/90 text-sm">Friendly 24/7 customer support</p>
+            <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">
+              24/7 CUSTOMER SERVICE
+            </h3>
+            <p className="text-yellow-500/90 text-sm">
+              Friendly 24/7 customer support
+            </p>
           </div>
           <div className="absolute -bottom-20 -right-96 w-10 h-10 bg-white hover:bg-gray-300 hover:scale-110 transition-all rounded-full flex items-center justify-center">
             <FaArrowUpLong className=" text-xl" />

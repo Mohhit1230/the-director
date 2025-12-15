@@ -5,15 +5,20 @@ import { GoShieldCheck } from "react-icons/go";
 export default function About() {
   return (
     <div className="max-w-7xl min-h-screen mx-auto mt-20 pt-20">
-      {/* Hero Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-32">
         <div className="text-white">
           <h1 className="text-5xl font-bold mb-6 tracking-wide">Our Story</h1>
           <p className="text-white/80 mb-6 leading-relaxed text-lg">
-            Launched in 2025, Exclusive is South Asia's premier online shopping marketplace with an active presence in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 millions customers across the region.
+            Launched in 2025, Exclusive is South Asia's premier online shopping
+            marketplace with an active presence in Bangladesh. Supported by wide
+            range of tailored marketing, data and service solutions, Exclusive
+            has 10,500 sellers and 300 brands and serves 3 millions customers
+            across the region.
           </p>
           <p className="text-white/80 leading-relaxed text-lg">
-            Exclusive has more than 1 Million products to offer, growing at a very fast pace. Exclusive offers a diverse assortment in categories ranging from consumer.
+            Exclusive has more than 1 Million products to offer, growing at a
+            very fast pace. Exclusive offers a diverse assortment in categories
+            ranging from consumer.
           </p>
         </div>
         <div className="rounded-lg overflow-hidden shadow-2xl">
@@ -76,8 +81,12 @@ export default function About() {
               <TbTruckDelivery className="text-white text-3xl" />
             </div>
           </div>
-          <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">FREE AND FAST DELIVERY</h3>
-          <p className="text-yellow-500/90 text-sm">Free delivery for all orders over $140</p>
+          <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">
+            FREE AND FAST DELIVERY
+          </h3>
+          <p className="text-yellow-500/90 text-sm">
+            Free delivery for all orders over $140
+          </p>
         </div>
 
         <div className="text-center">
@@ -86,8 +95,12 @@ export default function About() {
               <RiCustomerService2Line className="text-white text-3xl" />
             </div>
           </div>
-          <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">24/7 CUSTOMER SERVICE</h3>
-          <p className="text-yellow-500/90 text-sm">Friendly 24/7 customer support</p>
+          <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">
+            24/7 CUSTOMER SERVICE
+          </h3>
+          <p className="text-yellow-500/90 text-sm">
+            Friendly 24/7 customer support
+          </p>
         </div>
 
         <div className="text-center">
@@ -96,8 +109,12 @@ export default function About() {
               <GoShieldCheck className="text-white text-3xl" />
             </div>
           </div>
-          <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">MONEY BACK GUARANTEE</h3>
-          <p className="text-yellow-500/90 text-sm">We return money within 30 days</p>
+          <h3 className="text-xl font-bold text-[#ffad33] mb-3 tracking-wide">
+            MONEY BACK GUARANTEE
+          </h3>
+          <p className="text-yellow-500/90 text-sm">
+            We return money within 30 days
+          </p>
         </div>
       </div>
     </div>

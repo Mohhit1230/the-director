@@ -1,15 +1,20 @@
-import { useParams, Link } from 'react-router-dom';
-import { products, categories } from '../data/products';
-import { useState } from 'react';
-import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
-import { IoCartOutline, IoEyeOutline, IoChevronBack, IoChevronForward } from 'react-icons/io5';
-import { BiSolidStar } from 'react-icons/bi';
-import { useToast } from '../components/ui/Toast';
+import { useParams, Link } from "react-router-dom";
+import { products, categories } from "../data/products";
+import { useState } from "react";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+import {
+  IoCartOutline,
+  IoEyeOutline,
+  IoChevronBack,
+  IoChevronForward,
+} from "react-icons/io5";
+import { BiSolidStar } from "react-icons/bi";
+import { useToast } from "../components/ui/Toast";
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
   const toast = useToast();
-  const category = categories.find(cat => cat.id === parseInt(categoryId));
+  const category = categories.find((cat) => cat.id === parseInt(categoryId));
   const categoryProducts = products.filter(
     (product) => product.categoryId === parseInt(categoryId)
   );
@@ -20,23 +25,28 @@ const CategoryPage = () => {
 
   const handleWishlist = (productId) => {
     if (wishlist.includes(productId)) {
-      setWishlist(wishlist.filter(id => id !== productId));
-      toast.show('Removed from wishlist', { type: 'error' });
+      setWishlist(wishlist.filter((id) => id !== productId));
+      toast.show("Removed from wishlist", { type: "error" });
     } else {
       setWishlist([...wishlist, productId]);
-      toast.show('Added to wishlist', { type: 'success' });
+      toast.show("Added to wishlist", { type: "success" });
     }
   };
 
-  const handleAddToCart = (product) => {
-    toast.show('Added to cart', { type: 'success' });
+  const handleAddToCart = () => {
+    toast.show("Added to cart", { type: "success" });
   };
 
   const renderStars = (rating = 4) => {
     return (
       <div className="flex gap-1">
         {[...Array(5)].map((_, i) => (
-          <span key={i} className={i < rating ? "text-yellow-400 text-sm" : "text-gray-300 text-sm"}>
+          <span
+            key={i}
+            className={
+              i < rating ? "text-yellow-400 text-sm" : "text-gray-300 text-sm"
+            }
+          >
             <BiSolidStar />
           </span>
         ))}
@@ -46,7 +56,10 @@ const CategoryPage = () => {
 
   const totalPages = Math.ceil(categoryProducts.length / productsPerPage);
   const startIndex = currentPage * productsPerPage;
-  const displayedProducts = categoryProducts.slice(startIndex, startIndex + productsPerPage);
+  const displayedProducts = categoryProducts.slice(
+    startIndex,
+    startIndex + productsPerPage
+  );
 
   const handlePrevPage = () => {
     if (currentPage > 0) setCurrentPage(currentPage - 1);
@@ -60,9 +73,16 @@ const CategoryPage = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Category Not Found</h1>
-          <p className="text-gray-400">The category you're looking for doesn't exist.</p>
-          <Link to="/" className="mt-6 inline-block px-6 py-3 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors">
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Category Not Found
+          </h1>
+          <p className="text-gray-400">
+            The category you're looking for doesn't exist.
+          </p>
+          <Link
+            to="/"
+            className="mt-6 inline-block px-6 py-3 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors"
+          >
             Go Home
           </Link>
         </div>
@@ -75,34 +95,46 @@ const CategoryPage = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Breadcrumb */}
         <div className="mb-8 text-sm flex gap-2 text-yellow-400/60">
-          <Link to="/" className="text-[#ffad33]/70 hover:text-[#ffad33] transition-colors">Home</Link>
+          <Link
+            to="/"
+            className="text-[#ffad33]/70 hover:text-[#ffad33] transition-colors"
+          >
+            Home
+          </Link>
           <span>/</span>
           <span className="text-[#ffad33]">{category.name}</span>
         </div>
 
-        {/* Header */}
         <div className="flex justify-between items-center my-12">
           <div className="flex flex-col items-center gap-4">
-              
             <div className="flex items-center justify-start gap-2">
-            <div className="w-5 h-10 bg-[#fd4444] rounded"></div>
-              <p className="text-[#ffad33] text-3xl font-medium mb-1">{category.name}</p>
+              <div className="w-5 h-10 bg-[#fd4444] rounded"></div>
+              <p className="text-[#ffad33] text-3xl font-medium mb-1">
+                {category.name}
+              </p>
             </div>
           </div>
 
-          {/* Navigation Arrows */}
           <div className="flex gap-2">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 0}
-              className={`p-3 rounded-full ${currentPage === 0 ? 'bg-white cursor-not-allowed' : 'bg-white hover:bg-gray-700'} transition-colors`}
+              className={`p-3 rounded-full ${
+                currentPage === 0
+                  ? "bg-white cursor-not-allowed"
+                  : "bg-white hover:bg-gray-700"
+              } transition-colors`}
             >
               <IoChevronBack className="text-black text-xl" />
             </button>
             <button
               onClick={handleNextPage}
               disabled={currentPage >= totalPages - 1}
-              className={`p-3 rounded-full ${currentPage >= totalPages - 1 ? 'bg-white cursor-not-allowed' : 'bg-white hover:bg-gray-700'} transition-colors`}
+              className={`p-3 rounded-full ${
+                currentPage >= totalPages - 1
+                  ? "bg-white cursor-not-allowed"
+                  : "bg-white hover:bg-gray-700"
+              } transition-colors`}
             >
               <IoChevronForward className="text-black text-xl" />
             </button>
@@ -112,16 +144,19 @@ const CategoryPage = () => {
         {/* Product Grid */}
         {displayedProducts.length === 0 ? (
           <div className="text-center py-12">
-            <h3 className="text-2xl font-semibold text-white mb-2">No products found</h3>
+            <h3 className="text-2xl font-semibold text-white mb-2">
+              No products found
+            </h3>
             <p className="text-gray-400">Check back later for new products.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {displayedProducts.map((product, index) => (
-              <div key={product.id} className="group relative rounded-lg overflow-hidden">
-                {/* Product Image */}
+              <div
+                key={product.id}
+                className="group relative rounded-lg overflow-hidden"
+              >
                 <div className="relative aspect-square rounded-md overflow-hidden">
-                  {/* Badges */}
                   {product.discount && (
                     <span className="absolute top-3 left-3 bg-[#fd4444] text-white text-xs px-3 py-1 rounded z-10">
                       -{product.discount}%
@@ -133,7 +168,6 @@ const CategoryPage = () => {
                     </span>
                   )}
 
-                  {/* Action Icons */}
                   <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
                     <button
                       onClick={() => handleWishlist(product.id)}
@@ -151,15 +185,14 @@ const CategoryPage = () => {
                       </button>
                     </Link>
                   </div>
-
-                  {/* Product Image */}
                   <Link to={`/product/${product.id}`}>
                     <img
                       src={product.images?.[0]}
                       alt={product.name}
                       className="w-full h-full object-cover rounded-lg"
                       onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/300x300?text=Product';
+                        e.target.src =
+                          "https://via.placeholder.com/300x300?text=Product";
                       }}
                     />
                   </Link>
@@ -193,7 +226,9 @@ const CategoryPage = () => {
                   </div>
                   <div className="flex items-center gap-2 mb-2">
                     {renderStars(product.rating || 4)}
-                    <span className="text-sm text-gray-300">({product.reviews || 88})</span>
+                    <span className="text-sm text-gray-300">
+                      ({product.reviews || 88})
+                    </span>
                   </div>
 
                   {/* Color Variants */}

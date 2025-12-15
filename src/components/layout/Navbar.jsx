@@ -5,7 +5,11 @@ import { useState, useEffect, useRef } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { BiUser } from "react-icons/bi";
-import { MdOutlineShoppingBag, MdOutlineCancel, MdOutlineLogout } from "react-icons/md";
+import {
+  MdOutlineShoppingBag,
+  MdOutlineCancel,
+  MdOutlineLogout,
+} from "react-icons/md";
 import { AiOutlineStar } from "react-icons/ai";
 
 export const Navbar = () => {
@@ -25,7 +29,6 @@ export const Navbar = () => {
     { link: "Sign Up", href: "/signup" },
   ];
 
-
   useEffect(() => {
     lastScroll.current = window.scrollY;
     let ticking = false;
@@ -33,7 +36,6 @@ export const Navbar = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const current = window.scrollY;
-          // keep visible when mobile menu is open
           if (open) {
             setVisible(true);
             lastScroll.current = current;
@@ -42,10 +44,8 @@ export const Navbar = () => {
           }
 
           if (current > lastScroll.current + 10 && current > 60) {
-            // scrolled down
             setVisible(false);
           } else if (current < lastScroll.current - 10) {
-            // scrolled up
             setVisible(true);
           }
           lastScroll.current = current;
@@ -60,8 +60,9 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-50 bg-white/10 backdrop-blur-sm shadow transform transition-all duration-300 ease-in-out ${visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-        }`}
+      className={`fixed left-0 right-0 top-0 z-50 bg-white/10 backdrop-blur-sm shadow transform transition-all duration-300 ease-in-out ${
+        visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+      }`}
     >
       <nav className="max-w-7xl mx-auto w-full flex items-center justify-between px-4 md:px-6 ">
         <div className="w-full flex items-center justify-between">
@@ -96,7 +97,6 @@ export const Navbar = () => {
             ))}
           </div>
           <div className="hidden md:flex items-center gap-4">
-            {/* animated search container anchored to the icon wrapper so it grows from the icon */}
             <div className="bg-white rounded-sm overflow-hidden px-1.5 w-60">
               <form
                 onSubmit={(e) => {
@@ -114,17 +114,13 @@ export const Navbar = () => {
             </div>
 
             <button
-              onClick={() =>
-                navigate("/wishlist")
-              }
+              onClick={() => navigate("/wishlist")}
               className=" text-[#FFAD33] transition-colors hover:text-yellow-400 cursor-pointer"
             >
               <IoMdHeartEmpty className="w-7 h-7 font-light" />
             </button>
             <button
-              onClick={() =>
-                navigate("/cart")
-              }
+              onClick={() => navigate("/cart")}
               className=" text-[#FFAD33] transition-colors hover:text-yellow-400 cursor-pointer"
             >
               <IoCartOutline className="w-7 h-7" />
@@ -136,9 +132,7 @@ export const Navbar = () => {
               onMouseEnter={() => setUserDropdownOpen(true)}
               onMouseLeave={() => setUserDropdownOpen(false)}
             >
-              <button
-                className="text-white bg-[#fd4444] p-2 rounded-full transition-colors hover:bg-[#fd4444]/80 cursor-pointer"
-              >
+              <button className="text-white bg-[#fd4444] p-2 rounded-full transition-colors hover:bg-[#fd4444]/80 cursor-pointer">
                 <BiUser className="w-5 h-5" />
               </button>
 
@@ -154,7 +148,9 @@ export const Navbar = () => {
                           className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
                         >
                           <BiUser className="w-5 h-5 text-gray-300" />
-                          <span className="text-[#ffad33]">Manage My Account</span>
+                          <span className="text-[#ffad33]">
+                            Manage My Account
+                          </span>
                         </Link>
                         <Link
                           to="/account/orders"
@@ -168,7 +164,9 @@ export const Navbar = () => {
                           className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
                         >
                           <MdOutlineCancel className="w-5 h-5 text-gray-300" />
-                          <span className="text-[#ffad33]">My Cancellations</span>
+                          <span className="text-[#ffad33]">
+                            My Cancellations
+                          </span>
                         </Link>
                         <Link
                           to="/account/reviews"
@@ -180,7 +178,7 @@ export const Navbar = () => {
                         <button
                           onClick={() => {
                             logout();
-                            navigate('/');
+                            navigate("/");
                             setUserDropdownOpen(false);
                           }}
                           className="w-full flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-colors"
@@ -226,7 +224,7 @@ export const Navbar = () => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    
+
                     setOpen(false);
                   }}
                   className="p-1 rounded-full focus:outline-none"

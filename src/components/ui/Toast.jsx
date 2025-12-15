@@ -1,15 +1,12 @@
-/* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext } from 'react'
+import { createContext, useContext } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { IoCheckmarkCircleOutline, IoCloseCircleOutline, IoInformationCircleOutline, IoClose } from 'react-icons/io5'
 
-// Compatibility wrapper: pages call useToast().show(message, { type: 'success'|'error' })
 const ToastContext = createContext(null)
 
 export function ToastProvider({ children }) {
   const api = {
     show: (message, opts = {}) => {
-      // If caller wants the raw/toast API behavior, forward it
       if (opts.raw) return toast(message, opts)
       const duration = opts.duration || 4000
 
@@ -23,7 +20,6 @@ export function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={api}>
       {children}
-      {/* Render Toaster (needed to manage portal mounting) */}
       <Toaster position="bottom-right" />
     </ToastContext.Provider>
   )
@@ -34,7 +30,6 @@ function ToastCard({ visible, message, opts = {}, onClose }) {
   const type = opts.type || 'default'
   const title = opts.title
 
-  // Define distinct styles for each toast type
   const typeStyles = {
     success: {
       accent: 'bg-green-500',
@@ -65,13 +60,9 @@ function ToastCard({ visible, message, opts = {}, onClose }) {
   const { icon, iconBg, ring } = typeStyles[type]
 
   return (
-    // Added smoother/more noticeable entrance/exit animation
     <div className={`transform transition-all duration-300 ${visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95'}`}>
       <div className={`flex items-center w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden ring-2 ${ring} ring-opacity-70`}>
-        {/* Removed the left accent bar to use the ring as the primary indicator */}
-        
         <div className="flex items-center gap-3 px-4 py-3 flex-1">
-          {/* Icon container now uses a light background color based on type */}
           <div className={`flex-none w-8 h-8 flex items-center justify-center rounded-full ${iconBg}`}>
             {icon}
           </div>
